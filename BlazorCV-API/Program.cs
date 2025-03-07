@@ -1,5 +1,6 @@
 
 using BlazorCV_API.Data;
+using BlazorCV_API.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorCV_API
@@ -20,6 +21,11 @@ namespace BlazorCV_API
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowBlazor",
+                    policy => policy.WithOrigins("Blazor url").AllowAnyMethod().AllowAnyHeader());
+            });
 
             var app = builder.Build();
 
@@ -29,6 +35,8 @@ namespace BlazorCV_API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors("AllowBlazor");
 
             app.UseHttpsRedirection();
 
