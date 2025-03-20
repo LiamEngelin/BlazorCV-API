@@ -23,8 +23,8 @@ namespace BlazorCV_API
             });
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowBlazor",
-                    policy => policy.WithOrigins("Blazor url").AllowAnyMethod().AllowAnyHeader());
+                options.AddPolicy("AllowAll",
+                    builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
 
             var app = builder.Build();
