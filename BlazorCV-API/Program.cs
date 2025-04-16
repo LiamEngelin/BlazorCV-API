@@ -20,7 +20,7 @@ namespace BlazorCV_API
             var connectionString = Environment.GetEnvironmentVariable("DB_Connection_String") ?? builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
             builder.Services.AddCors(options =>
             {
