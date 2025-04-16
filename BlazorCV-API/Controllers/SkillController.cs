@@ -51,7 +51,7 @@ namespace BlazorCV_API.Controllers
             oldSkill.Name = newSkill.Name;
             oldSkill.Years = newSkill.Years;
             oldSkill.Level = newSkill.Level;
-            _DbContext.SaveChangesAsync();
+            await _DbContext.SaveChangesAsync();
             return Ok(newSkill);
         }
 
@@ -60,7 +60,7 @@ namespace BlazorCV_API.Controllers
         {
             var skill = await _DbContext.Skills.FindAsync(id);
             _DbContext.Skills.Remove(skill);
-            _DbContext.SaveChangesAsync();
+            await _DbContext.SaveChangesAsync();
             return Ok($"Removed skill {skill.Name}");
         }
     }

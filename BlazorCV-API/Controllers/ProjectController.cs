@@ -54,7 +54,7 @@ namespace BlazorCV_API.Controllers
             var oldproject = await _DbContext.Projects.FindAsync(id);
             oldproject.Name = newproject.Name;
             oldproject.Description = newproject.Description;
-            _DbContext.SaveChangesAsync();
+            await _DbContext.SaveChangesAsync();
             return Ok(newproject);
         }
 
@@ -63,7 +63,7 @@ namespace BlazorCV_API.Controllers
         {
             var project = await _DbContext.Projects.FindAsync(id);
             _DbContext.Projects.Remove(project);
-            _DbContext.SaveChangesAsync();
+            await _DbContext.SaveChangesAsync();
             return Ok($"Removed project {project.Name}");
         }
     }
