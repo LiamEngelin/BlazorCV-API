@@ -16,8 +16,7 @@ namespace BlazorCV_API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Configuration.AddEnvironmentVariables();
-            var connectionString = Environment.GetEnvironmentVariable("DB_Connection_String") ?? builder.Configuration.GetConnectionString("DefaultConnection");
+    
             builder.Services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
